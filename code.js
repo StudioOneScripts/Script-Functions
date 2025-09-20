@@ -1,6 +1,4 @@
-﻿
-
-include_file("functions.js")
+﻿include_file("functions.js")
 let kPackageID = "functions"
 
 function userFunction()
@@ -16,6 +14,13 @@ function userFunction()
 
 	this.performEdit = function (context)
 	{
+		let tracks = S1.getTracks();
+
+		for(let track of tracks)
+			print(track.name);
+		
+	
+		
 
 		return Host.Results.kResultOk;
 	}

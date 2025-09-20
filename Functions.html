@@ -6,11 +6,12 @@
   <title>S1 Utility Functions API</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; background-color: #ffffff; color: #333; }
-    header { background: #2c3e50; color: #ecf0f1; padding: 20px; text-align: center; }
-    header h1 { margin: 0; font-size: 2em; }
-    #sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 240px; background: #34495e; padding-top: 20px; overflow-y: auto; }
-    #sidebar h2 { color: #ecf0f1; text-align: center; font-size: 1.2em; margin-bottom: 20px; }
-    #sidebar a { display: block; color: #ecf0f1; padding: 10px 16px; text-decoration: none; font-size: 0.95em; font-weight: bold; }
+
+    header { background: #000000; color: #ffffffd1; padding: 10px; text-align: center; }
+    header h3 { font-family: "Arial Narrow", Arial, sans-serif; font-weight: 300; margin: 0; font-size: 2em; }
+    #sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 240px; background: #000000; padding-top: 20px; overflow-y: auto; }
+    #sidebar h2 { color: #ffffffd1; text-align: center; font-size: 1.2em; margin-bottom: 20px; }
+    #sidebar a { display: block; color: #ffffffd1; padding: 10px 16px; text-decoration: none; font-size: 0.95em; font-weight: bold; }
     #sidebar a:hover { text-decoration: underline; }
     main { margin-left: 260px; padding: 24px; flex: 1; }
     section h2 { border-bottom: 1px solid #ccc; padding-bottom: 6px; margin-top: 40px; }
@@ -24,16 +25,15 @@
     ul { list-style-type: none; padding: 0; margin: 0; }
     li { margin: 8px 0; }
     .note { font-size: 0.9em; color: #666; }
-    footer { background: #2c3e50; color: #ecf0f1; text-align: center; padding: 10px; margin-top: 40px; }
+    footer { background: #00000000; color: #000000; text-align: center; padding: 0px; margin-top: 20px; }
   </style>
 </head>
 <body>
   <div id="sidebar">
-    <h2>Navigation</h2>
     <a href="#overview">Overview</a>
     <a href="#core">Core</a>
     <a href="#transport">Transport & Filters</a>
-    <a href="#root-mixer">Root / Mixer</a>
+    <a href="#root-mixer">Mixer</a>
     <a href="#tracks">Tracks & Color</a>
     <a href="#channels">Channels</a>
     <a href="#mixer-reset">Mixer Reset</a>
@@ -45,44 +45,46 @@
 
   <main>
     <header>
-      <h1>S1 Utility Functions API</h1>
-      <p>Helper functions for PreSonus Studio One scripting</p>
+      <h2>Studio One<sup style="font-size:70%;">®</sup> Utility Methods API</h2>
     </header>
 
     <section id="overview">
       <h2>Overview</h2>
-      <p>This API groups helper methods into categories for transport, mixer, track/channel management, mixer reset, file I/O & song operations, engine helpers, window management, and general utilities.</p>
-      <p class="note">⚠️ Many functions directly manipulate the current song/mixer. Use with care.</p>
+      <p>This API organizes helper methods for more efficient coding.</p>
+      <p class="note">ℹ️ Add the include statement to the top of code file <code>include_file("functions.js")</code></p>
+      <p class="note">ℹ️ Methods should automatically list with intellisense in code editors.</p>
+      <img src="https://static.wixstatic.com/media/eec217_136b81bc72ed42ddbdb5b2456385026f~mv2.png" alt="Intellisense Screenshot" width="225">
+
+      <p class="note">⚠️ Some functions directly manipulate the current song/mixer. Use with care.</p>
     </section>
 
     <section id="core">
       <h2>Core</h2>
       <ul>
-        <li><code>S1()</code> → Initializes the namespace.</li>
         <li><code>S1.runCommand(context, command)</code> → Runs a Studio One command.</li>
-        <li><code>S1.getVersion()</code> → Returns the Studio One version string (e.g., <code>7.x.x</code>).</li>
+        <li><code>S1.getVersion()</code> → Returns the Studio One version string (e.g., <code>X.x.x</code>).</li>
       </ul>
       <h3>Example</h3>
       <pre><span class="comment">// Run a command to add a new instrument track</span>
-<span class="function">S1.runCommand</span>(<span class="string">"Track"</span>, <span class="string">"Add Instrument Track"</span>)
-<span class="keyword">if</span> (this.result != <span class="number">0</span>) { <span class="keyword">return</span> } <span class="comment">// did not click OK</span></pre>
+<span class="function">S1.runCommand</span>(<span class="string">"Track"</span>, <span class="string">"Add Instrument Track"</span>)</pre>
     </section>
 
     <section id="transport">
       <h2>Transport & Filters</h2>
       <ul>
-        <li><code>S1.getTransport()</code> → Returns the active <em>TransportPanel</em> object.</li>
-        <li><code>S1.getTrackFilter()</code> → Returns the <em>TrackListFilter</em>.</li>
-        <li><code>S1.getChannelFilter()</code> → Returns the <em>ChannelFilter</em> (MixerConsole).</li>
-        <li><code>S1.getHeaderTrackFilter()</code> → Returns the header track filter (<em>TrackListFilter1</em>).</li>
+        <li><code>S1.getTransport()</code> → Returns the active TransportPanel object.</li>
+        <li><code>S1.getTrackFilter()</code> → Returns the Track List Filter.</li>
+        <li><code>S1.getChannelFilter()</code> → Returns the ChannelFilter (MixerConsole).</li>
+        <li><code>S1.getHeaderTrackFilter()</code> → Returns the header track filter.</li>
       </ul>
     </section>
 
     <section id="root-mixer">
-      <h2>Root / Mixer</h2>
+      <h2>Mixer</h2>
       <ul>
-        <li><code>S1.getMixer()</code> → Returns the MixerConsole object.</li>
-        <li><code>S1.getMasterBus()</code> → Returns the Master bus channel.</li>
+        <li><code>S1.getMixer()</code> → Returns the Mix Console object.</li>
+        <li><code>S1.getMasterBus()</code> → Returns the Master bus channel object.</li>
+        <li><code>S1.getListenBus()</code> → Returns the Listen bus channel object.</li>
       </ul>
     </section>
 
@@ -90,13 +92,12 @@
       <h2>Tracks & Color</h2>
       <ul>
         <li><code>S1.getTrackList()</code> → Returns the main track list.</li>
-        <li><code>S1.getTracks()</code> → Returns all tracks.</li>
-        <li><code>S1.getSelectedTracks()</code> → Returns selected tracks.</li>
+        <li><code>S1.getTracks()</code> → Returns an array of all tracks.</li>
+        <li><code>S1.getSelectedTracks()</code> → Returns an array of selected tracks.</li>
         <li><code>S1.disableMutedTracks()</code> → Disables muted channels and unmutes them.</li>
         <li><code>S1.colorTrack(context, track, hexColor)</code> → Colors a track using a hex string (e.g., <code>"0b6352"</code>).</li>
         <li><code>S1.normalizeTrackNames(context)</code> → Title-cases track names.</li>
         <li><code>S1.removeEmptyTracks(context)</code> → Removes empty Audio/Music tracks.</li>
-        <li><code>S1.getArrangeItems()</code> → Returns the Arrange/TrackList object. <span class="note">Note: Function references <code>version</code> variable internally; ensure it’s defined or remove that line.</span></li>
       </ul>
       <h3>Example</h3>
       <pre><span class="comment">// Color all tracks green</span>
@@ -140,7 +141,7 @@
     </section>
 
     <section id="fileio">
-      <h2>File I/O & Song Operations</h2>
+      <h2>File I/O</h2>
       <ul>
         <li><code>S1.writeTextFile(folder, filename, text)</code> → Writes a text file under <code>$USERCONTENT/Script Support/&lt;folder&gt;</code>.</li>
         <li><code>S1.readTextFile(folder, filename)</code> → Reads a text file into an array of lines.</li>
@@ -168,22 +169,20 @@
       <ul>
         <li><code>S1.openWindow(window)</code> → Opens a Studio One window.</li>
         <li><code>S1.closeWindow(window)</code> → Closes a Studio One window.</li>
-        <li><code>S1.closeHeaderTracks()</code> → Closes Tempo/Signature editors and hides Marker/Chord/Lyrics/Arranger/Video tracks; hides secondary ruler.</li>
+        <li><code>S1.closeHeaderTracks()</code> → Closes all header tracks and hides secondary ruler.</li>
       </ul>
       <h3>Example</h3>
-      <pre><span class="comment">// Close all header tracks</span>
+      <pre><span class="comment">// Close some header tracks</span>
 <span class="keyword">let</span> tracks = [<span class="string">"Marker"</span>, <span class="string">"Chord"</span>, <span class="string">"Arranger"</span>, <span class="string">"Lyrics"</span>, <span class="string">"Video"</span>]
 <span class="keyword">let</span> filter = <span class="function">S1.getHeaderTrackFilter</span>();
 <span class="keyword">for</span> (<span class="keyword">let</span> track of tracks)
     filter.findParameter(track + <span class="string">"Track"</span>).setValue(<span class="number">0</span>, <span class="keyword">true</span>)</pre>
-      <h3>Useful Window Names</h3>
+      <h3>Window Names</h3>
       <pre>
-BigTimeDisplay, Browser, ChordDisplay, Console, Editor,
-Inspector, LyricsDisplay, MetronomeSetup, MidiMonitor,
-PerformanceMonitor, PluginManager, RecordPanel, 
-SignatureEditor, SongInformation, SongToolbar, SynthRack,
-TempoEditor, TrackList, VideoPlayer
-      </pre>
+BigTimeDisplay, Browser, ChordDisplay, Console, Editor, Editor1, EditSceneManager, HistoryPanel  
+InfoView, Inspector, LyricsDisplay, MessageWindow, MetronomeSetup, MidiMonitor, MixGroupManager, MixSceneManager  
+MusicDeviceRack, PerformanceMonitor, PluginManager, RecordPanel, SignatureEditor, SongInformation, SongToolbar, 
+SoundVariationEditor, SynthRack, TempoEditor, TrackList, VideoPlayer </pre>
     </section>
 
     <section id="utilities">
