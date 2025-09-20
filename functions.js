@@ -1,7 +1,8 @@
 ﻿
-function S1 ()
-{}
-
+/**
+ * @namespace S1
+ */
+let S1 = S1 || {};
 S1.runCommand = function(context,command)
 {
     Host.GUI.Commands.interpretCommand(context,command);
@@ -133,17 +134,7 @@ S1.getTrackList = function ()
     return trackList;
 }
 
-// Setting track color
 
-S1.pickColor = function (colorParam)
-{
-        var theme = Host.GUI.Themes.getTheme("studioapp");
-		var style = theme ? theme.getStyle("Standard.ColorPickerPopupStyle") : null;
-		var colorPicker = Host.Classes.createInstance("Host:ColorPicker");
-		colorPicker.construct(colorParam, true);
-		colorPicker.popup();
-		return(colorParam.value)
-}
 
 S1.colorTrack = function (context, track, hexColor)
 {
@@ -524,10 +515,6 @@ S1.saveNewVersion = function (name)
         Host.Attributes(["Description",name,"Incremental","0"]))
 }
 
-S1.exportStems = function ()
-{
-    Host.GUI.Commands.interpretCommand("Song","Export Stems")
-}
 // **********************************************************
 //                      ENGINE
 // **********************************************************
