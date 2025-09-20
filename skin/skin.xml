@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Skin>
+
+	<Resources>
+		<!-- <Image name="background" url="images/background.png"/> -->
+	</Resources>
+
+	<Styles>
+		<!-- <Style name="MyButton" inherit="Standard.AddIn.Button"/> -->
+	</Styles>
+
+	<Forms>
+		<Form name="UserForm" title="Do Something" windowstyle="dialogstyle restorepos">
+			<View size="0,0,200,300" >
+				<Button name="testButton" title="--- Click Me ---" width="100" height="24" style="MyButton"/>
+			</View>
+		</Form> 
+	</Forms>
+
+</Skin>
+

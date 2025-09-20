@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ClassFactory>
+	<ScriptClass
+		classID="{95941E8E-D923-447C-8DA2-4A637512B25B}"
+		category="EditTask"
+		subCategory="TrackEdit"
+		name="Do Something"
+		sourceFile="code.js"
+		functionName="createInstance">
+		<Attribute id="commandCategory" value="External"/>
+		<Attribute id="arguments" value="selected "/>
+		<Attribute id="menuPriority" value="0"/>
+		<Attribute id="menuFollow" value="1"/>
+	</ScriptClass>
+</ClassFactory>
+ 
+
